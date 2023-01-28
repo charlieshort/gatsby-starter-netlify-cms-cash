@@ -111,22 +111,21 @@ const IndexPage = ({ data }) => {
   );
 
     const gatsbyRepoData = useStaticQuery(graphql`
+
     query {
-      github {
-        repository(name: "gatsby", owner: "gatsbyjs") {
-          id
-          title
-        }
-      }
-    }
+  example {
+    id
+    title
+  }
+}
   `)
 
   return (
     <section>
       <p>
         Build Time Data: Gatsby repo{` `}
-        <a href={gatsbyRepoData.github.repository.title}>
-          {gatsbyRepoData.github.repository.id}
+        <a href={title}>
+          {id}
         </a>
       </p>
     </section>
