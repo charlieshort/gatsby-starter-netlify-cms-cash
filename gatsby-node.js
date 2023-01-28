@@ -104,7 +104,7 @@ exports.sourceNodes = async ({
 
   const data = await response.json();
 
-  data.response.docs.forEach((item) => {
+  data.data.forEach((item) => {
     createNode({
       ...item,
       id: item._id,
