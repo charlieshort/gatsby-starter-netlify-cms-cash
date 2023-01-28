@@ -22,7 +22,7 @@ export const query = graphql`
           id
         }
         endDateTime
-        web_url
+        title
       }
     }
   }
