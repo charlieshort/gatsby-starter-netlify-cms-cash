@@ -101,6 +101,9 @@ const IndexPage = ({ data }) => {
         intro={frontmatter.intro}
       />
     </Layout>
+    <pre className="text-xs bg-gray-50 p-4">
+      {JSON.stringify(data, null, 2)}
+    </pre>
   );
 };
 
