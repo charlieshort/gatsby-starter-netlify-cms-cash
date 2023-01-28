@@ -109,31 +109,9 @@ const IndexPage = ({ data }) => {
       />
     </Layout>
 
-       <pre className="text-xs bg-gray-50 p-4">
-      {JSON.stringify(data, null, 2)}
-    </pre>
-
   );
 
- export const query = graphql`
-  {
-    allCashrewardsDeals(
-      filter: {
-        endDateTime: { eq: "1980-11-23T05:00:00+0000" }
-        couponCode: { ne: "" }
-      }
-    ) {
-      nodes {
-        endDateTime
-        merchant {
-          name
-        }
-        couponCode
-        merchantId
-      }
-    }
-  }
-`;
+
 
 
 };
@@ -147,6 +125,20 @@ IndexPage.propTypes = {
 };
 
 export default IndexPage;
+
+export const query = graphql`
+  {
+    allCashrewardsDeals(
+    ) {
+      nodes {
+        id
+        merchant {
+          id
+        }
+      }
+    }
+  }
+`;
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
