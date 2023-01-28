@@ -8,13 +8,6 @@ import Features from "../components/Features";
 import BlogRoll from "../components/BlogRoll";
 import FullWidthImage from "../components/FullWidthImage";
 
-
-import { graphql, useStaticQuery } from "gatsby"
-
-
-
-
-
 // eslint-disable-next-line
 export const IndexPageTemplate = ({
   image,
@@ -108,12 +101,7 @@ const IndexPage = ({ data }) => {
         intro={frontmatter.intro}
       />
     </Layout>
-
   );
-
-
-
-
 };
 
 IndexPage.propTypes = {
@@ -126,6 +114,23 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
+export const query = graphql`
+  {
+    allCashrewardsDeals(
+      filter: {
+        endDateTime: { eq: "1980-11-23T05:00:00+0000" }
+      }
+    ) {
+      nodes {
+        id
+        merchant {
+          id
+        }
+        title
+      }
+    }
+  }
+`;
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
