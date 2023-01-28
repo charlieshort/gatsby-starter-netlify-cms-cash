@@ -84,27 +84,17 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 // CHARLIES STUFF
-const fetch = (...args) =>
-  import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+const axios = require('axios');
 
-exports.sourceNodes = async ({
-  actions: { createNode },
-  createContentDigest,
-}) => {
-  // get data from GitHub API at build time
-  const result = await fetch(`https://www.cashrewards.com.au/api/offers/v1/Offers?clientId=1000000&isFeatured=false`)
-  const resultData = await result.json()
-  // create node for build time data example in the docs
-  createNode({
-    // nameWithOwner and url are arbitrary fields from the data
-    
-    // required fields
-    id: resultData.data.id,
-    parent: null,
-    children: [],
+exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
+  const { data } = await axios.get(`https://www.cashrewards.com.au/api/offers/v1/Offers?clientId=1000000&isFeatured=false`);
+
+  actions.createNode({
+    ...data,
+    id: createNodeId(data.id),
     internal: {
-      type: `Example`,
-      contentDigest: createContentDigest(resultData),
-    },
-  })
-}
+      type: 'deal',
+      contentDigest: createContentDigest(data)
+    }
+  });
+};

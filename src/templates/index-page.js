@@ -113,7 +113,7 @@ const IndexPage = ({ data }) => {
     const gatsbyRepoData = useStaticQuery(graphql`
 
     query {
-  example {
+  deal {
     id
   }
 }
