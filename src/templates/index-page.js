@@ -99,7 +99,6 @@ const IndexPage = ({ data }) => {
         mainpitch={frontmatter.mainpitch}
         description={frontmatter.description}
         intro={frontmatter.intro}
-        data={JSON.stringify(data, null, 2)}
       />
     </Layout>
   );
@@ -114,10 +113,6 @@ IndexPage.propTypes = {
 };
 
 export default IndexPage;
-
-
-
-
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
@@ -148,19 +143,6 @@ export const pageQuery = graphql`
           heading
           description
         }
-      }
-    }
-        allCashrewardsDeals(
-      filter: {
-        endDateTime: { eq: "1980-11-23T05:00:00+0000" }
-      }
-    ) {
-      nodes {
-        id
-        merchant {
-          id
-        }
-        title
       }
     }
   }
