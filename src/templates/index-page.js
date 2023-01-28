@@ -115,7 +115,6 @@ const IndexPage = ({ data }) => {
     query {
   example {
     id
-    title
   }
 }
   `)
@@ -124,7 +123,7 @@ const IndexPage = ({ data }) => {
     <section>
       <p>
         Build Time Data: Gatsby repo{` `}
-        <a href={title}>
+        <a href={id}>
           {id}
         </a>
       </p>
