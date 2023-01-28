@@ -107,7 +107,7 @@ exports.sourceNodes = async ({
   data.data.forEach((item) => {
     createNode({
       ...item,
-      id: item._id,
+      id: item.id,
       internal: {
         type: 'CashrewardsDeals',
         contentDigest: createContentDigest(item)
