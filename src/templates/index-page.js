@@ -98,7 +98,8 @@ const IndexPage = ({ data }) => {
         subheading={frontmatter.subheading}
         mainpitch={frontmatter.mainpitch}
         description={frontmatter.description}
-        intro={JSON.stringify(data, null, 2)}
+        intro={frontmatter.intro}
+        data={JSON.stringify(data, null, 2)}
       />
     </Layout>
   );
