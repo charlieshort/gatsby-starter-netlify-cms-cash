@@ -97,9 +97,9 @@ exports.sourceNodes = async ({
   // create node for build time data example in the docs
   createNode({
     // nameWithOwner and url are arbitrary fields from the data
-    title: resultData.data.title,
+    title: resultData.dat[0].title,
     // required fields
-    id: resultData.data.id,
+    id: resultData.data[0].id,
     parent: null,
     children: [],
     internal: {
