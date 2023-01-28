@@ -126,19 +126,6 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
-export const query = graphql`
-  {
-    allCashrewardsDeals(
-    ) {
-      nodes {
-        id
-        merchant {
-          id
-        }
-      }
-    }
-  }
-`;
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
