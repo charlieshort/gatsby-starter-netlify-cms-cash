@@ -108,27 +108,34 @@ const IndexPage = ({ data }) => {
         intro={frontmatter.intro}
       />
     </Layout>
+
+       <pre className="text-xs bg-gray-50 p-4">
+      {JSON.stringify(data, null, 2)}
+    </pre>
+
   );
 
-    const gatsbyRepoData = useStaticQuery(graphql`
-
-    query {
-  deal {
-    id
+ export const query = graphql`
+  {
+    allCashrewardsDeals(
+      filter: {
+        endDateTime: { eq: "1980-11-23T05:00:00+0000" }
+        couponCode: { ne: "" }
+      }
+    ) {
+      nodes {
+        endDateTime
+        merchant {
+          name
+        }
+        couponCode
+        merchantId
+      }
+    }
   }
-}
-  `)
+`;
 
-  return (
-    <section>
-      <p>
-        Build Time Data: Gatsby repo{` `}
-        <a href={id}>
-          {id}
-        </a>
-      </p>
-    </section>
-  )
+
 };
 
 IndexPage.propTypes = {

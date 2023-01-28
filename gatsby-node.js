@@ -84,17 +84,34 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 // CHARLIES STUFF
-const axios = require('axios');
+// gatsby-node.js
 
-exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
-  const { data } = await axios.get(`https://www.cashrewards.com.au/api/offers/v1/Offers?clientId=1000000&isFeatured=false`);
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+});
 
-  actions.createNode({
-    ...data,
-    id: createNodeId(data),
-    internal: {
-      type: 'deal',
-      contentDigest: createContentDigest(data)
-    }
+const fetch = require('node-fetch');
+
+
+exports.sourceNodes = async ({
+  actions: { createNode },
+  createContentDigest
+}) => {
+
+  const response = await fetch(
+    `https://www.cashrewards.com.au/api/offers/v1/Offers?clientId=1000000&isFeatured=false`
+  );
+
+  const data = await response.json();
+
+  data.response.docs.forEach((item) => {
+    createNode({
+      ...item,
+      id: item._id,
+      internal: {
+        type: 'CashrewardsDeals',
+        contentDigest: createContentDigest(item)
+      }
+    });
   });
 };
