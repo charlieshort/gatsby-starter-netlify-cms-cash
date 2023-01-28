@@ -114,23 +114,9 @@ IndexPage.propTypes = {
 
 export default IndexPage;
 
-export const query = graphql`
-  {
-    allCashrewardsDeals(
-      filter: {
-        endDateTime: { eq: "1980-11-23T05:00:00+0000" }
-      }
-    ) {
-      nodes {
-        id
-        merchant {
-          id
-        }
-        title
-      }
-    }
-  }
-`;
+
+
+
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
@@ -161,6 +147,19 @@ export const pageQuery = graphql`
           heading
           description
         }
+      }
+    }
+        allCashrewardsDeals(
+      filter: {
+        endDateTime: { eq: "1980-11-23T05:00:00+0000" }
+      }
+    ) {
+      nodes {
+        id
+        merchant {
+          id
+        }
+        title
       }
     }
   }
