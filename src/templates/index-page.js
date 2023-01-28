@@ -8,6 +8,13 @@ import Features from "../components/Features";
 import BlogRoll from "../components/BlogRoll";
 import FullWidthImage from "../components/FullWidthImage";
 
+
+import { graphql, useStaticQuery } from "gatsby"
+
+
+
+
+
 // eslint-disable-next-line
 export const IndexPageTemplate = ({
   image,
@@ -102,6 +109,28 @@ const IndexPage = ({ data }) => {
       />
     </Layout>
   );
+
+    const gatsbyRepoData = useStaticQuery(graphql`
+    query {
+      github {
+        repository(name: "gatsby", owner: "gatsbyjs") {
+          id
+          title
+        }
+      }
+    }
+  `)
+
+  return (
+    <section>
+      <p>
+        Build Time Data: Gatsby repo{` `}
+        <a href={gatsbyRepoData.github.repository.title}>
+          {gatsbyRepoData.github.repository.id}
+        </a>
+      </p>
+    </section>
+  )
 };
 
 IndexPage.propTypes = {

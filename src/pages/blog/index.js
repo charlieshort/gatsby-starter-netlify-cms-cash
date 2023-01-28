@@ -36,34 +36,3 @@ export default class BlogIndexPage extends React.Component {
     );
   }
 }
-
-
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-
-const IndexPage = () => {
-  const gatsbyRepoData = useStaticQuery(graphql`
-    query {
-      github {
-        repository(name: "gatsby", owner: "gatsbyjs") {
-          id
-          nameWithOwner
-          url
-        }
-      }
-    }
-  `)
-
-  return (
-    <section>
-      <p>
-        Build Time Data: Gatsby repo{` `}
-        <a href={gatsbyRepoData.github.repository.url}>
-          {gatsbyRepoData.github.repository.nameWithOwner}
-        </a>
-      </p>
-    </section>
-  )
-}
-
-export default IndexPage
