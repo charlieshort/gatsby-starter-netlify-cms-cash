@@ -91,7 +91,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
 
   actions.createNode({
     ...data,
-    id: createNodeId(data.id),
+    id: createNodeId(data),
     internal: {
       type: 'deal',
       contentDigest: createContentDigest(data)
