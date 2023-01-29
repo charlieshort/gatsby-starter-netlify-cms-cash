@@ -13,10 +13,10 @@
  */
 const axios = require('axios');
 
-exports.onPreInit = () => console.log("Loaded ships");
+exports.onPreInit = () => console.log("Loaded cashrewards");
 
 // constants for your GraphQL Post and Author types
-const SHIP_NODE_TYPE = `Ship`;
+const DEAL_NODE_TYPE = `Deal`;
 
 exports.sourceNodes = async ({
   actions,
@@ -26,31 +26,31 @@ exports.sourceNodes = async ({
 }) => {
   const { createNode } = actions
 
-    let shipsleft = true;
+    let dealsleft = true;
     let currentpage = 1;
-    let ships = [];
+    let deals = [];
 
-    while (shipsleft) {
-        let shippages = await getShipsPage(currentpage); 
-        ships.push(...shippages.data);
-        if (!shippages?.next) {
-            shipsleft = false;
+    while (dealsleft) {
+        let dealpages = await getDealsPage(currentpage); 
+        deals.push(...dealpages.data);
+        if (!dealpages?.next) {
+            dealsleft = false;
         } else {
             currentpage++;
         }
     }
     
   // loop through data and create Gatsby nodes
-  ships.forEach(ship =>
+  deals.forEach(deal =>
     createNode({
-      ...ship,
-      id: createNodeId(`${SHIP_NODE_TYPE}-${ship.title}`),
+      ...deal,
+      id: createNodeId(`${DEAL_NODE_TYPE}-${deal.title}`),
       parent: null,
       children: [],
       internal: {
-        type: SHIP_NODE_TYPE,
-        content: JSON.stringify(ship),
-        contentDigest: createContentDigest(ship),
+        type: DEAL_NODE_TYPE,
+        content: JSON.stringify(deal),
+        contentDigest: createContentDigest(deal),
       },
     })
   )
@@ -58,7 +58,7 @@ exports.sourceNodes = async ({
   return
 }
 
-async function getShipsPage(page = 1) {
-    const ships = await axios.get(`https://www.cashrewards.com.au/api/offers/v1/Offers?clientId=1000000&isFeatured=false`);
-    return ships.data;
+async function getDealsPage(page = 1) {
+    const deals = await axios.get(`https://www.cashrewards.com.au/api/offers/v1/Offers?clientId=1000000&isFeatured=false`);
+    return deals.data;
 }

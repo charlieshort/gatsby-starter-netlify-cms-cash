@@ -7,6 +7,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     "source-plugin",
+    "cashrewards",
     {
       resolve: "gatsby-plugin-sass",
       options: {
