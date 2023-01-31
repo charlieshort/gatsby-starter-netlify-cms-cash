@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 export default function Component(props) {
-  return props.params.title
+  return JSON.stringify(props.data) + JSON.stringify(props.params)
 }
 
 // This is the page query that connects the data to the actual component. Here you can query for any and all fields
@@ -10,9 +10,15 @@ export default function Component(props) {
 // to connect to this GraphQL query.
 
 export const query = graphql`
-  query($id: String) {
-    ship(id: { eq: $id }) {
-      title
+  query ($id: String) {
+    allDeal(filter: {merchant: {name: {eq: $id}}}) {
+      edges {
+        node {
+          id
+        }
+      }
     }
   }
 `
+
+

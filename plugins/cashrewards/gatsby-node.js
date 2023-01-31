@@ -13,7 +13,7 @@
  */
 const axios = require('axios');
 
-exports.onPreInit = () => console.log("Loaded cashrewards");
+exports.onPreInit = () => console.log("Loaded Cashrewards");
 
 // constants for your GraphQL Post and Author types
 const DEAL_NODE_TYPE = `Deal`;
