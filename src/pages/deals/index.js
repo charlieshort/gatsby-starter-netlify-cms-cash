@@ -2,11 +2,11 @@ import React from "react"
 import { graphql } from "gatsby"
 
 const HomePage = ({ data }) => {
-  console.log(data);
+  //console.log(data);
   return (
     <>
       <h1>Deals</h1>
-      {data.allDeal.edges.map(deal => (
+      {data.allCashrewards.edges.map(deal => (
         <div id={deal.node.id}>
           <h3>{deal.node.title}</h3>
           <p>Model: {deal.node.title}</p>
@@ -18,7 +18,7 @@ const HomePage = ({ data }) => {
 
 export const query = graphql`
   query {
-    allDeal {
+    allCashrewards {
       edges {
         node {
           id

@@ -16,7 +16,7 @@ const axios = require('axios');
 exports.onPreInit = () => console.log("Loaded Cashrewards");
 
 // constants for your GraphQL Post and Author types
-const DEAL_NODE_TYPE = `Deal`;
+const CASHREWARDS_NODE_TYPE = `Cashrewards`;
 
 exports.sourceNodes = async ({
   actions,
@@ -44,11 +44,11 @@ exports.sourceNodes = async ({
   deals.forEach(deal =>
     createNode({
       ...deal,
-      id: createNodeId(`${DEAL_NODE_TYPE}-${deal.title}`),
+      id: createNodeId(`${CASHREWARDS_NODE_TYPE}-${deal.title}`),
       parent: null,
       children: [],
       internal: {
-        type: DEAL_NODE_TYPE,
+        type: CASHREWARDS_NODE_TYPE,
         content: JSON.stringify(deal),
         contentDigest: createContentDigest(deal),
       },

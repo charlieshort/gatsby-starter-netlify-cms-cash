@@ -11,7 +11,7 @@ export default function Component(props) {
 
 export const query = graphql`
   query ($id: String) {
-    allDeal(filter: {merchant: {name: {eq: $id}}}) {
+    allCashrewards(filter: {merchant: {name: {eq: $id}}}) {
       edges {
         node {
           id
